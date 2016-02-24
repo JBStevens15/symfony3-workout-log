@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Workout Log{% endblock %}
+
+{% block body %}
+<div class="container">	
+
+	<div class="row">
+		<h1 class="col-md-14">My Workout Log</h1>
+	</div>
+
+	<div class="button-container">
+		<div class="archive-button">
+			<a href="{{ path('app_archive') }}">
+				<button type="button" class="nav-glyph glyphicon glyphicon-list-alt"> Archive</button>
+			</a>
+		</div>
+
+		<div class="strength-button">
+			<a href="{{ path('app_strength_sort') }}">
+				<button type="button" class="nav-glyph glyphicon glyphicon-heart-empty"> Strength</button>
+			</a>
+		</div>
+
+		<div class="cardio-button">
+			<a href="{{ path('app_cardio_sort') }}">
+				<button type="button" class="nav-glyph glyphicon glyphicon-heart"> Cardio</button>
+			</a>
+		</div>
+
+		<div class="other-button">
+			<a href="{{ path('app_other_sort') }}">
+				<button type="button" class="nav-glyph glyphicon glyphicon-asterisk"> Other</button>
+			</a>
+		</div>
+	</div>
+
+	<div class="data_table">
+
+		<div class="row">
+			<table class="table-bordered">
+
+				<div class="row">
+					<tr>
+						<th>Date</th>
+						<th>Exercise</th>
+						<th>Weight</th>
+						<th>Sets</th>
+						<th>Reps</th>
+						<th>Category</th>
+						<th>Actions</th>
+					</tr>
+				</div>
+
+				{% for logEntry in logEntries %}
+					<tr>
+						<td>
+							{{ logEntry.date|date('Y-m-d') }}
+						</td>
+						<td>
+							{{ logEntry.exerciseName }}
+						</td>
+						<td>
+							{{ logEntry.weight }}
+						</td>
+						<td>
+							{{ logEntry.sets }}
+						</td>
+						<td>
+							{{ logEntry.reps }}
+						</td>
+						<td>
+							{{ logEntry.category }}
+						</td>
+						<td>
+							<a class="action_button" href="{{ path('log_entry_delete', {'id': logEntry.id}) }}">
+			    				<button type="button" class="glyphicon glyphicon-trash"></button>
+			    			</a>
+							<a class="action_button" href="{{ path('log_entry_edit', {'id': logEntry.id}) }}">
+			    				<button type="button" class="glyphicon glyphicon-edit"></button>
+			    			</a>
+			    		</td>
+					</tr>
+				{% endfor %}
+				
+			</table>
+		</div>
+	</div>
+
+</div>
+
+<div class="formdiv">
+	{{ render(controller('AppBundle:Workouts:new')) }}
+</div>
+{% endblock %}

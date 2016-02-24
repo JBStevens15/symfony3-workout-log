@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Workout Log{% endblock %}
+
+{% block body %}
+
+<div class="row">
+	<h1 class="col-md-14">My Workout Log</h1>
+</div>
+
+<div class="button-container">
+	<div class="archive-button">
+		<a href="{{ path('app_home') }}">
+			<button type="button" class="nav-glyph glyphicon glyphicon-list-alt"> Back</button>
+		</a>
+	</div>
+</div>
+
+<div class="row">
+	<table class="table-bordered">
+
+		<div class="row">
+			<tr>
+				<th>Date</th>
+				<th>Exercise</th>
+				<th>Weight</th>
+				<th>Sets</th>
+				<th>Reps</th>
+				<th>Category</th>
+				<th>Actions</th>
+			</tr>
+		</div>
+
+		{% for logEntry in logEntries %}
+			<tr>
+				<td>
+					{{ logEntry.date|date('Y-m-d') }}
+				</td>
+				<td>
+					{{ logEntry.exerciseName }}
+				</td>
+				<td>
+					{{ logEntry.weight }}
+				</td>
+				<td>
+					{{ logEntry.sets }}
+				</td>
+				<td>
+					{{ logEntry.reps }}
+				</td>
+				<td>
+					{{ logEntry.category }}
+				</td>
+				<td>
+					<a href="{{ path('log_entry_delete', {'id': logEntry.id}) }}">
+	    				<button type="button" class="glyphicon glyphicon-trash"></button>
+	    			</a>
+					<a href="{{ path('log_entry_edit', {'id': logEntry.id}) }}">
+	    				<button type="button" class="glyphicon glyphicon-edit"></button>
+	    			</a>
+	    		</td>
+			</tr>
+		{% endfor %}
+
+	</table>
+</div>
+
+
+{% endblock %}

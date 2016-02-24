@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Workout Log{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/bundles/app/css/form.css') }}" />
+{% endblock %}
+
+{% block body %}
+
+	<h1>Edit Log Entry</h1>
+
+	<form action="{{ path('log_entry_edit', {id:logEntry.id}) }}" method="post">
+	    {{ form_start(form) }}
+	    {{ form_widget(form) }}
+	    {{ form_end(form) }}
+	</form>
+
+{% endblock %}

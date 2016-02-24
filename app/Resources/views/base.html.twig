@@ -2,12 +2,22 @@
 <html>
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('/bundles/app/css/bootstrap.min.css') }}" />
+            <link rel="stylesheet" href="{{ asset('/bundles/app/css/index.css') }}" />
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+
+        {% block javascripts %}
+            <script type="text/javascript" src="{{ asset('/bundles/app/js/jquery-2.2.0.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('/bundles/app/js/jquery-ui.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('/bundles/app/js/bootstrap.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('/bundles/app/js/index.js') }}"></script>
+        {% endblock %}
     </body>
 </html>

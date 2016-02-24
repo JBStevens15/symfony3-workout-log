@@ -4,6 +4,15 @@ parameters:
 #    parameter_name: value
 
 services:
+  log_entry.manager:
+      class: AppBundle\Services\LogEntryManager
+      arguments: ["@doctrine.orm.entity_manager"]
+
+  log_entry.form:
+        class: AppBundle\Form\Type\LogEntryType
+        arguments:
+        tags:
+            - { name: form.type }
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
